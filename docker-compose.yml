@@ -1,0 +1,13 @@
+services:
+  malayalam_tts:
+    image: ghcr.io/matatonic/openedai-speech-min:latest
+    container_name: malayalam_tts_api
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./models:/app/voices/piper  # Map to a 'piper' subfolder
+      - ./config:/app/config
+    environment:
+      - TTS_HOME=piper
+      - DEFAULT_VOICE=ml_IN-arjun-medium
